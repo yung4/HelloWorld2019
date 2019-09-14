@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    new MaterialApp(
       title: 'herro world 2019',
       home: new myApp(),
     ),
@@ -14,8 +14,14 @@ void main() {
 //  _State createState() => new _State();
 //}
 
-class myApp extends StatelessWidget {
+class myApp extends StatefulWidget {
 
+  @override
+  _State createState() => new _State();
+
+}
+
+class _State extends State<myApp>{
   bool value1 = false;
   bool value2 = false;
 
@@ -23,14 +29,14 @@ class myApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text('i am confusion'),
+        title: Text('Best app'),
+        backgroundColor: Colors.deepPurple[500],
       ),
       body: Center(
         child: new Column(
           children: <Widget>[
-            Text('CHILD 1'),
-            Text('CHILD 2'),
-            Text('CHILD 4'),
+
+
           ],
         ),
       ),
@@ -53,7 +59,7 @@ class myApp extends StatelessWidget {
                   margin: EdgeInsets.all(0.0),
                   padding: EdgeInsets.all(0.0),
                   decoration: BoxDecoration(
-                    color: Colors.deepPurpleAccent,
+                    color: Colors.deepPurple[500],
                   ),
                 ),
               ),
@@ -68,7 +74,12 @@ class myApp extends StatelessWidget {
               ),
               CheckboxListTile(
                 value: value2,
-                onChanged: (bool value){
+                onChanged: (bool value) {
+
+                  setState(() {
+                    value2 = value;
+                  });
+
 
                 },
                 title: Text('我不知道'),
