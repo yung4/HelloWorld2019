@@ -34,15 +34,12 @@ class _State extends State<myApp>{
       ),
       body: Center(
         child: new Column(
-          children: <Widget>[
 
-
-          ],
         ),
       ),
       drawer: Drawer(
         child: Center (
-          child: Column(
+          child: ListView(
             children: <Widget>[
 
               Container(
@@ -65,23 +62,27 @@ class _State extends State<myApp>{
               ),
 
 
+              Container(
 
+                child: CheckboxListTile(
+                  value: value2,
+                  onChanged: (bool value) {
+                    setState(() {
+                      value2 = value;
+                    });
 
-
-              CheckboxListTile(
-                value: value2,
-                onChanged: (bool value) {
-
-                  setState(() {
-                    value2 = value;
-                  });
-
-
-                },
-                title: Text('我不知道'),
-                subtitle: Text('我還是不知道'),
-                //activeColor: Colors.red,
+                  },
+                  title: Text('我不知道'),
+                  subtitle: Text('我還是不知道'),
+                  //activeColor: Colors.red,
+                ),
               ),
+
+
+
+
+
+
 
               Align(
                 alignment: Alignment.bottomCenter,
