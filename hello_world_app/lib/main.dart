@@ -103,6 +103,7 @@ class _State extends State<myApp> {
                 onChanged: (bool value) {
                   setState(() {
                     value1 = value;
+                    redditToggle = value;
                   });
                 },
                 title: Text('Reddit'),
@@ -113,6 +114,7 @@ class _State extends State<myApp> {
                 onChanged: (bool value) {
                   setState(() {
                     value2 = value;
+                    twitterToggle = value;
                   });
                 },
                 title: Text('Twitter'),
@@ -123,6 +125,7 @@ class _State extends State<myApp> {
                 onChanged: (bool value) {
                   setState(() {
                     value3 = value;
+                    apnewsToggle = value;
                   });
                 },
                 title: Text('AP News'),
@@ -164,11 +167,25 @@ class StuffInTiles extends StatelessWidget {
           selected: false,
           title: new Text(t.title));
 
-    return new ExpansionTile(
-      key: new PageStorageKey<int>(3),
-      title: new Text(t.title),
-      children: t.children.map(_buildTiles).toList(),
+    return Visibility(
+      visible: getVisibility(t.title),
+      child: new ExpansionTile(
+        key: new PageStorageKey<int>(3),
+        title: new Text(t.title),
+        children: t.children.map(_buildTiles).toList(),
+      ),
     );
+  }
+}
+
+bool getVisibility(String title) {
+  switch(title) {
+    case "Reddit":
+      return redditToggle;
+    case "Twitter":
+      return twitterToggle;
+    default:
+      return apnewsToggle;
   }
 }
 
@@ -210,3 +227,8 @@ List<MyTile> listOfTiles = <MyTile>[
     ],
   ),
 ];
+
+
+bool redditToggle = false;
+bool apnewsToggle = false;
+bool twitterToggle = false;
