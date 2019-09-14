@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
   runApp(
@@ -9,50 +12,83 @@ void main() {
   );
 }
 
-//class MyApp extends StatefulWidget {
-//  @override
-//  _State createState() => new _State();
-//}
-
 class myApp extends StatefulWidget {
-
   @override
   _State createState() => new _State();
-
 }
 
-class _State extends State<myApp>{
+
+
+class _State extends State<myApp> {
   bool value1 = false;
   bool value2 = false;
   bool value3 = false;
+  bool opened = false;
+  String text = "";
+
+  Completer<WebViewController> _controller = Completer<WebViewController>();
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text('no'),
+        title: Text('Media Selector'),
         backgroundColor: Colors.deepPurple[500],
       ),
-      body: new ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return new StuffInTiles(listOfTiles[index]);
-        },
-        itemCount: listOfTiles.length,
+      body: WebView(
+          initialUrl: 'https://reddit.com',
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController controller){
+            _controller.complete(controller);
+          },
+        ),
+
+
+
+          /*
+
+      Stack(
+
+        children: <Widget>[
+
+          ExpansionTile(
+            title: Text('Reddit'),
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Text(text),
+                ]
+              ),
+            ],
+          ),
+
+
+
+
+
+        ],
+
       ),
+
+    */
+
+
+
+
+
       drawer: Drawer(
-        child: Center (
+        child: Center(
           child: Column(
             children: <Widget>[
-
               Container(
-
                 child: DrawerHeader(
                   child: Center(
                     child: Text(
-                      "Select Media Sources", style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
+                      "Select Media Sources",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                   margin: EdgeInsets.all(0.0),
@@ -62,11 +98,6 @@ class _State extends State<myApp>{
                   ),
                 ),
               ),
-
-
-
-
-
               CheckboxListTile(
                 value: value1,
                 onChanged: (bool value) {
@@ -75,7 +106,6 @@ class _State extends State<myApp>{
                   });
                 },
                 title: Text('Reddit'),
-                subtitle: Text('東方人好久哦然後我一會就發了'),
                 //activeColor: Colors.red,
               ),
               CheckboxListTile(
@@ -86,7 +116,6 @@ class _State extends State<myApp>{
                   });
                 },
                 title: Text('Twitter'),
-                subtitle: Text('我還是不知道'),
                 //activeColor: Colors.red,
               ),
               CheckboxListTile(
@@ -97,22 +126,18 @@ class _State extends State<myApp>{
                   });
                 },
                 title: Text('AP News'),
-                subtitle: Text('我可以上厠所嗎？'),
+
                 //activeColor: Colors.red,
               ),
-
               Align(
                 alignment: Alignment.bottomCenter,
-                child:
-                ListTile(
+                child: ListTile(
                   title: Text('hello'),
-                  onTap: (){
+                  onTap: () {
                     Navigator.pop(context);
                   },
                 ),
               ),
-
-
             ],
           ),
         ),
