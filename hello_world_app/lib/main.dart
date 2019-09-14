@@ -30,7 +30,7 @@ class _State extends State<myApp>{
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text('MYPY'),
+        title: Text('no'),
         backgroundColor: Colors.deepPurple[500],
       ),
       body: new ListView.builder(
