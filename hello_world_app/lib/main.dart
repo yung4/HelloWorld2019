@@ -24,12 +24,13 @@ class myApp extends StatefulWidget {
 class _State extends State<myApp>{
   bool value1 = false;
   bool value2 = false;
+  bool value3 = false;
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text('Best app'),
+        title: Text('MYPY'),
         backgroundColor: Colors.deepPurple[500],
       ),
       body: Center(
@@ -69,17 +70,36 @@ class _State extends State<myApp>{
 
 
               CheckboxListTile(
+                value: value1,
+                onChanged: (bool value) {
+                  setState(() {
+                    value1 = value;
+                  });
+                },
+                title: Text('Reddit'),
+                subtitle: Text('東方人好久哦然後我一會就發了'),
+                //activeColor: Colors.red,
+              ),
+              CheckboxListTile(
                 value: value2,
                 onChanged: (bool value) {
-
                   setState(() {
                     value2 = value;
                   });
-
-
                 },
-                title: Text('我不知道'),
+                title: Text('Twitter'),
                 subtitle: Text('我還是不知道'),
+                //activeColor: Colors.red,
+              ),
+              CheckboxListTile(
+                value: value3,
+                onChanged: (bool value) {
+                  setState(() {
+                    value3 = value;
+                  });
+                },
+                title: Text('AP News'),
+                subtitle: Text('我可以上厠所嗎？'),
                 //activeColor: Colors.red,
               ),
 
