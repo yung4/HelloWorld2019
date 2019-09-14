@@ -33,13 +33,11 @@ class _State extends State<myApp>{
         title: Text('MYPY'),
         backgroundColor: Colors.deepPurple[500],
       ),
-      body: Center(
-        child: new Column(
-          children: <Widget>[
-
-
-          ],
-        ),
+      body: new ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return new StuffInTiles(listOfTiles[index]);
+        },
+        itemCount: listOfTiles.length,
       ),
       drawer: Drawer(
         child: Center (
@@ -121,5 +119,69 @@ class _State extends State<myApp>{
       ),
     );
   }
-  //why
 }
+
+class StuffInTiles extends StatelessWidget {
+  final MyTile myTile;
+  StuffInTiles(this.myTile);
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildTiles(myTile);
+  }
+
+  Widget _buildTiles(MyTile t) {
+    if (t.children.isEmpty)
+      return new ListTile(
+          dense: true,
+          enabled: false,
+          isThreeLine: false,
+          selected: false,
+          title: new Text(t.title));
+
+    return new ExpansionTile(
+      key: new PageStorageKey<int>(3),
+      title: new Text(t.title),
+      children: t.children.map(_buildTiles).toList(),
+    );
+  }
+}
+
+class MyTile {
+  String title;
+  List<MyTile> children;
+  MyTile(this.title, [this.children = const <MyTile>[]]);
+}
+
+List<MyTile> listOfTiles = <MyTile>[
+  new MyTile(
+    'Reddit',
+    <MyTile>[
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link')
+    ],
+  ),
+  new MyTile(
+    'Twitter',
+    <MyTile>[
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link')
+    ],
+  ),
+  new MyTile(
+    'AP News',
+    <MyTile>[
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link'),
+      new MyTile('link')
+    ],
+  ),
+];
