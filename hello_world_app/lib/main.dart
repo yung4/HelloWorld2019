@@ -44,7 +44,7 @@ class _State extends State<myApp>{
         child: Center (
           child: Column(
             children: <Widget>[
-              //Checkbox(value: value1,)
+
               Container(
 
                 child: DrawerHeader(
@@ -66,12 +66,8 @@ class _State extends State<myApp>{
 
 
 
-              ListTile(
-                title: Text('hello'),
-                onTap: (){
-                  Navigator.pop(context);
-                },
-              ),
+
+
               CheckboxListTile(
                 value: value2,
                 onChanged: (bool value) {
@@ -86,6 +82,19 @@ class _State extends State<myApp>{
                 subtitle: Text('我還是不知道'),
                 //activeColor: Colors.red,
               ),
+
+              Align(
+                alignment: Alignment.bottomCenter,
+                child:
+                ListTile(
+                  title: Text('hello'),
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+
+
             ],
           ),
         ),
