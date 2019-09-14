@@ -19,8 +19,6 @@ class myApp extends StatelessWidget {
   bool value1 = false;
   bool value2 = false;
 
-
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -41,10 +39,32 @@ class myApp extends StatelessWidget {
           child: Column(
             children: <Widget>[
               //Checkbox(value: value1,)
-              DrawerHeader(
-                child: Center(
-                  child: Text('為什麽'),
-                )
+              Container(
+
+                child: DrawerHeader(
+                  child: Center(
+                    child: Text(
+                      "Select Media Sources", style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                    ),
+                  ),
+                  margin: EdgeInsets.all(0.0),
+                  padding: EdgeInsets.all(0.0),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurpleAccent,
+                  ),
+                ),
+              ),
+
+
+
+              ListTile(
+                title: Text('hello'),
+                onTap: (){
+                  Navigator.pop(context);
+                },
               ),
               CheckboxListTile(
                 value: value2,
